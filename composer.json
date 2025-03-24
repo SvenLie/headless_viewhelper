@@ -1,0 +1,21 @@
+{
+  "name": "svenlie/headless-viewhelper",
+  "description": "Extension to provide some fluid viewhelper with JSON output",
+  "type": "typo3-cms-extension",
+  "version": "1.0.0",
+  "require": {
+    "ext-json": "*",
+    "typo3/cms-core": "^13.4",
+    "friendsoftypo3/headless": "^4.6"
+  },
+  "extra": {
+    "typo3/cms": {
+      "extension-key": "headless_viewhelper"
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "SvenLie\\HeadlessViewhelper\\": "Classes"
+    }
+  }
+}
