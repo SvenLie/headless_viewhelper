@@ -39,15 +39,19 @@ abstract class AbstractFormFieldViewHelper extends CoreAbstractFormFieldViewHelp
 {
     protected array $data = [];
 
+    public function initializeArguments(): void
+    {
+        parent::initializeArguments();
+        $this->registerArgument('label', 'string', 'Label for frontend rendering', false, '');
+    }
+
     public function render(): string
     {
         parent::render();
 
         $attributes = [];
-        foreach ($this->tag->getAttributes() as $key => $value) {
-            if (str_starts_with($key, 'data-')) {
-                $key = substr($key, strpos('data-', $key) + 5);
-                $attributes['data'][$key] = $value;
+        foreach ($this->arguments as $key => $value) {
+            if (empty($value)) {
                 continue;
             }
 
