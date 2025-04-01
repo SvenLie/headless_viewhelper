@@ -51,13 +51,14 @@ final class OptionViewHelper extends AbstractFormFieldViewHelper
         $this->data = json_decode(parent::render(), true);
 
         $childContent = $this->renderChildren();
-        $this->data['content'] = (string)$childContent;
+        $this->data['label'] = (string)$childContent;
         $value = $this->arguments['value'] ?? $childContent;
         if ($this->arguments['selected'] ?? $this->isValueSelected((string)$value)) {
-            $this->data['selected'] = 'selected';
+            $this->data['selected'] = true;
+        } else {
+            $this->data['selected'] = false;
         }
         $this->data['value'] = $value;
-        $this->data['type'] = 'selectOption';
         $parentRequestedFormTokenFieldName = $this->renderingContext->getViewHelperVariableContainer()->get(
             SelectViewHelper::class,
             'registerFieldNameForFormTokenGeneration'

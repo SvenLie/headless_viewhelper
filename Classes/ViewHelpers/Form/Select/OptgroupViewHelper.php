@@ -37,12 +37,14 @@ final class OptgroupViewHelper extends AbstractFormFieldViewHelper
         $this->registerArgument('additionalAttributes', 'array', 'Additional tag attributes. They will be added directly to the resulting HTML tag.');
         $this->registerArgument('data', 'array', 'Additional data-* attributes. They will each be added with a "data-" prefix.');
         $this->registerArgument('disabled', 'boolean', 'If true, option group is rendered as disabled', false, false);
+        $this->registerArgument('label', 'string', 'Label for frontend rendering', false, '');
     }
 
     public function render(): string
     {
         $this->data = json_decode(parent::render(), true);
 
+        $this->data['label'] = $this->arguments['label'];
         $this->data['type'] = 'selectOptionGroup';
 
         if ($this->arguments['disabled']) {
