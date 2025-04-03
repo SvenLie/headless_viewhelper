@@ -36,70 +36,8 @@ defined('TYPO3') || die();
 
 call_user_func(
     static function () {
-       $GLOBALS['TYPO3_CONF_VARS']['SYS']['fluid']['namespaces']['headlessViewhelper'] = [
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['fluid']['namespaces']['headlessViewhelper'] = [
             'SvenLie\HeadlessViewhelper\ViewHelpers'
         ];
-
-        $GLOBALS['TYPO3_CONF_VARS']['SYS']['features']['headlessViewhelper.overrideFluidViewHelper'] ??= false;
-
-        $features = GeneralUtility::makeInstance(Features::class);
-
-        if ($features->isFeatureEnabled('headlessViewhelper.overrideFluidViewHelper') && ExtensionManagementUtility::isLoaded('fluid')) {
-            $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][FormViewHelper::class] = [
-                'className' => HeadlessFormViewHelper::class
-            ];
-
-            $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][TextfieldViewHelper::class] = [
-                'className' => HeadlessTextfieldViewHelper::class
-            ];
-
-            $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][TextareaViewHelper::class] = [
-                'className' => HeadlessTextareaViewHelper::class
-            ];
-
-            $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][ButtonViewHelper::class] = [
-                'className' => HeadlessButtonViewHelper::class
-            ];
-
-            $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][CheckboxViewHelper::class] = [
-                'className' => HeadlessCheckboxViewHelper::class
-            ];
-
-            $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][CountrySelectViewHelper::class] = [
-                'className' => HeadlessCountrySelectViewHelper::class
-            ];
-
-            $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][HiddenViewHelper::class] = [
-                'className' => HeadlessHiddenViewHelper::class
-            ];
-
-            $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][PasswordViewHelper::class] = [
-                'className' => HeadlessPasswordViewHelper::class
-            ];
-
-            $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][RadioViewHelper::class] = [
-                'className' => HeadlessRadioViewHelper::class
-            ];
-
-            $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][SelectViewHelper::class] = [
-                'className' => HeadlessSelectViewHelper::class
-            ];
-
-            $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][OptgroupViewHelper::class] = [
-                'className' => HeadlessOptgroupViewHelper::class
-            ];
-
-            $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][OptionViewHelper::class] = [
-                'className' => HeadlessOptionViewHelper::class
-            ];
-
-            $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][SubmitViewHelper::class] = [
-                'className' => HeadlessSubmitViewHelper::class
-            ];
-
-            $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][UploadViewHelper::class] = [
-                'className' => HeadlessUploadViewHelper::class
-            ];
-        }
     }
 );
