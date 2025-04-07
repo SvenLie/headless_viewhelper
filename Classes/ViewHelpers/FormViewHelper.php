@@ -49,6 +49,7 @@ class FormViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\FormViewHelper
 
         if ($this->tag->getAttribute('action') !== null) {
             $this->data['action'] = $this->tag->getAttribute('action');
+            $this->data['action'] = str_replace('&amp;', '&', $this->data['action']);
         }
 
         // Force 'method="get"' or 'method="post"', defaulting to "post".
