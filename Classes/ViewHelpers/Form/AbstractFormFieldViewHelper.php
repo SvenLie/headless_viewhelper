@@ -43,6 +43,7 @@ abstract class AbstractFormFieldViewHelper extends CoreAbstractFormFieldViewHelp
     {
         parent::initializeArguments();
         $this->registerArgument('label', 'string', 'Label for frontend rendering', false, '');
+        $this->registerArgument('errors', 'array', 'Get errors', false, []);
     }
 
     public function render(): string
@@ -55,11 +56,29 @@ abstract class AbstractFormFieldViewHelper extends CoreAbstractFormFieldViewHelp
                 continue;
             }
 
+            // error handling is later
+            if ($key === 'errors') {
+                continue;
+            }
+
             $attributes[$key] = $value;
         }
+
+        if (isset($attributes['name']) && isset($this->arguments['errors'])) {
+            foreach ($this->arguments['errors'] as $error) {
+                if (is_array($error) && array_key_exists($attributes['name'], $error)) {
+                    $attributes['errors'] = $error[$attributes['name']];
+                }
+            }
+        }
+
+        if (!isset($attributes['errors'])) {
+            $attributes['errors'] = [];
+        }
+
         return json_encode($attributes);
     }
-
+    
     /**
      * Renders a hidden field with the same name as the element, to make sure the empty value is submitted
      * in case nothing is selected. This is needed for checkbox and multiple select fields
