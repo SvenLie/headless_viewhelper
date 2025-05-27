@@ -43,6 +43,7 @@ abstract class AbstractFormFieldViewHelper extends CoreAbstractFormFieldViewHelp
     {
         parent::initializeArguments();
         $this->registerArgument('label', 'string', 'Label for frontend rendering', false, '');
+        $this->registerArgument('placeholder', 'string', 'Placeholder for frontend rendering', false, '');
         $this->registerArgument('errors', 'array', 'Get errors', false, []);
         $this->registerArgument('objectName', 'string', 'Define the object name for property errors', false, '');
     }
