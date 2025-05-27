@@ -71,8 +71,12 @@ abstract class AbstractFormFieldViewHelper extends CoreAbstractFormFieldViewHelp
                     $attributes['errors'] = $error[$attributes['name']];
                 }
 
+                if (!is_array($error) || !isset($attributes['objectName']))
+                {
+                    continue;
+                }
                 // errors with property mapping
-                if (is_array($error) && $attributes['objectName'] !== '' && array_key_exists($attributes['objectName'] . '.' . $attributes['property'], $error)) {
+                if ($attributes['objectName'] !== '' && array_key_exists($attributes['objectName'] . '.' . $attributes['property'], $error)) {
                     $attributes['errors'] = $error[$attributes['objectName'] . '.' . $attributes['property']];
                 }
             }
