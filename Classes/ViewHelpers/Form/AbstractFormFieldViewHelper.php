@@ -44,6 +44,7 @@ abstract class AbstractFormFieldViewHelper extends CoreAbstractFormFieldViewHelp
         parent::initializeArguments();
         $this->registerArgument('label', 'string', 'Label for frontend rendering', false, '');
         $this->registerArgument('errors', 'array', 'Get errors', false, []);
+        $this->registerArgument('objectName', 'string', 'Define the object name for property errors', false, '');
     }
 
     public function render(): string
@@ -68,6 +69,11 @@ abstract class AbstractFormFieldViewHelper extends CoreAbstractFormFieldViewHelp
             foreach ($this->arguments['errors'] as $error) {
                 if (is_array($error) && array_key_exists($attributes['name'], $error)) {
                     $attributes['errors'] = $error[$attributes['name']];
+                }
+
+                // errors with property mapping
+                if (is_array($error) && $attributes['objectName'] !== '' && array_key_exists($attributes['objectName'] . '.' . $attributes['property'], $error)) {
+                    $attributes['errors'] = $error[$attributes['objectName'] . '.' . $attributes['property']];
                 }
             }
         }
