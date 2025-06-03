@@ -66,10 +66,10 @@ abstract class AbstractFormFieldViewHelper extends CoreAbstractFormFieldViewHelp
             $attributes[$key] = $value;
         }
 
-        if (isset($attributes['name']) && isset($this->arguments['errors'])) {
+        if ((isset($attributes['name']) || isset($attributes['property'])) && isset($this->arguments['errors'])) {
             foreach ($this->arguments['errors'] as $error) {
-                if (is_array($error) && array_key_exists($attributes['name'], $error)) {
-                    $attributes['errors'] = $error[$attributes['name']];
+                if (is_array($error) && array_key_exists($attributes['name'] ?? $attributes['property'], $error)) {
+                    $attributes['errors'] = $error[$attributes['name'] ?? $attributes['property']];
                 }
 
                 if (!is_array($error) || !isset($attributes['objectName']))
