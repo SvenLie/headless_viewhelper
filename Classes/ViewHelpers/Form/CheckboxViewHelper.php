@@ -151,7 +151,6 @@ final class CheckboxViewHelper extends AbstractFormFieldViewHelper
         }
 
         $this->setErrorClassAttribute();
-        $hiddenField = $this->renderHiddenFieldForEmptyValue();
-        return $hiddenField . json_encode($this->data);
+        return json_encode($this->data);
     }
 }
