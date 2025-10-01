@@ -84,6 +84,11 @@ abstract class AbstractFormFieldViewHelper extends CoreAbstractFormFieldViewHelp
             }
         }
 
+        if (!isset($attributes['identifier']) && isset($attributes['name'])) {
+            $attributes['identifier'] = str_replace('[', '_', $attributes['name']);
+            $attributes['identifier'] = str_replace(']', '', $attributes['identifier']);
+        }
+
         if (!isset($attributes['errors'])) {
             $attributes['errors'] = [];
         }
