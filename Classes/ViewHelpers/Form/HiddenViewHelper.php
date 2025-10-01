@@ -69,6 +69,8 @@ final class HiddenViewHelper extends AbstractFormFieldViewHelper
 
         $this->data['type'] = 'hidden';
         $this->data['name'] = $name;
+        $this->data['identifier'] = str_replace('[', '_', $name);
+        $this->data['identifier'] = str_replace(']', '', $this->data['identifier']);
         $this->data['value'] = $this->getValueAttribute();
 
         $this->addAdditionalIdentityPropertiesIfNeeded();
