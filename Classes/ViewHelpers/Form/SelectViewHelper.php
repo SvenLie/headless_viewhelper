@@ -127,7 +127,7 @@ final class SelectViewHelper extends AbstractFormFieldViewHelper
         $this->data = json_decode(parent::render(), true);
 
         if ($this->arguments['required']) {
-            $this->data['required'] = 'required';
+            $this->data['required'] = $this->arguments['required'];
         }
         $name = $this->getName();
         if ($this->arguments['multiple']) {

@@ -28,12 +28,23 @@ use SvenLie\HeadlessViewhelper\ViewHelpers\Form\AbstractFormFieldViewHelper;
 
 final class GroupViewHelper extends AbstractFormFieldViewHelper
 {
+
+    public function initializeArguments(): void
+    {
+        parent::initializeArguments();
+        $this->registerArgument('required', 'boolean', 'If set no empty value is allowed.', false, false);
+    }
+
     public function render(): string
     {
         $this->data = json_decode(parent::render(), true);
 
         $this->data['label'] = $this->arguments['label'];
         $this->data['type'] = 'radioGroup';
+
+        if ($this->arguments['required']) {
+            $this->data['required'] = $this->arguments['required'];
+        }
 
         $renderedChildren = trim($this->renderChildren());
         $renderedChildren = preg_replace('!}\s*{!', '},{', $renderedChildren);
