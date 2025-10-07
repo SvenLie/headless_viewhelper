@@ -233,6 +233,8 @@ class FormViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\FormViewHelper
     {
         $tmp = [];
         $tmp['name'] = $name;
+        $tmp['identifier'] = str_replace('[', '_', $name);
+        $tmp['identifier'] = str_replace(']', '', $tmp['identifier']);
         $tmp['type'] = 'hidden';
         $tmp['value'] = $value;
         $this->data['elements'][] = $tmp;
