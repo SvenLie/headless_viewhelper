@@ -47,6 +47,7 @@ abstract class AbstractFormFieldViewHelper extends CoreAbstractFormFieldViewHelp
         $this->registerArgument('placeholder', 'string', 'Placeholder for frontend rendering', false, '');
         $this->registerArgument('errors', 'array', 'Get errors', false, []);
         $this->registerArgument('objectName', 'string', 'Define the object name for property errors', false, '');
+        $this->registerArgument('readonly', 'bool', 'Specifies that the input element should be readonly', false, false);
     }
 
     public function render(): string
