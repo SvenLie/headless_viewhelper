@@ -16,10 +16,10 @@ final class StaticTextViewHelper extends AbstractTagBasedViewHelper
 
     public function render()
     {
+        $this->data = $this->arguments;
         $children = trim($this->renderChildren());
         $this->data['type'] = 'staticText';
-        $this->data['content'] = $children;
-        $this->data['identifier'] = $this->arguments['identifier'] ?? '';
+        $this->data['data'] = $children;
 
         return json_encode($this->data);
     }
