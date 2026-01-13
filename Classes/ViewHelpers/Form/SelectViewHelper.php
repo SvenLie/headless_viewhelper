@@ -171,7 +171,7 @@ final class SelectViewHelper extends AbstractFormFieldViewHelper
 
         $viewHelperVariableContainer->addOrUpdate(self::class, 'selectedValue', $selectedValue);
         if ($selectedValue !== null) {
-            $this->data['value'] = $selectedValue;
+            $this->data['value'] = (string)$selectedValue;
         }
 
         $optionArray = [];
