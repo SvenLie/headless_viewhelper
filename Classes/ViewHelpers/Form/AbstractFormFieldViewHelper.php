@@ -74,7 +74,7 @@ abstract class AbstractFormFieldViewHelper extends CoreAbstractFormFieldViewHelp
                     $attributes['errors'] = $error[$attributes['name'] ?? $attributes['property']];
                 }
 
-                if ($key === $attributes['name'] ?? $attributes['property']) {
+                if ($key === ($attributes['name'] ?? $attributes['property'])) {
                     $attributes['errors'] = $error;
                 }
 
