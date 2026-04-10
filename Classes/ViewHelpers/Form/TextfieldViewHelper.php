@@ -50,6 +50,9 @@ final class TextfieldViewHelper extends AbstractFormFieldViewHelper
         $this->registerArgument('errorClass', 'string', 'CSS class to set if there are errors for this ViewHelper', false, 'f3-form-error');
         $this->registerArgument('required', 'bool', 'If the field is required or not', false, false);
         $this->registerArgument('type', 'string', 'The field type, e.g. "text", "email", "url" etc.', false, 'text');
+        $this->registerArgument('pattern', 'string', 'The pattern attribute specifies a regular expression the form controls value should match', false);
+        $this->registerArgument('maxLength', 'integer', 'The maximum length specifies the maximum number of characters that can be entered in the input field', false);
+        $this->registerArgument('minLength', 'integer', 'The minimum length specifies the minimum number of characters that must be entered in the input field', false);
     }
 
     public function render(): string
@@ -65,6 +68,21 @@ final class TextfieldViewHelper extends AbstractFormFieldViewHelper
 
         $this->data['name'] = $name;
         $this->data['type'] = $type;
+
+        $pattern = $this->arguments['pattern'];
+        if ($pattern !== false) {
+            $this->data['pattern'] = $pattern;
+        }
+
+        $maxLength = $this->arguments['maxLength'];
+        if ($maxLength !== null) {
+            $this->data['maxLength'] = $maxLength;
+        }
+
+        $minLength = $this->arguments['minLength'];
+        if ($minLength !== null) {
+            $this->data['minLength'] = $minLength;
+        }
 
         $value = $this->getValueAttribute();
 
