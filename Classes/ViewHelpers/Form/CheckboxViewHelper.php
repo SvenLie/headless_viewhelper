@@ -107,6 +107,7 @@ final class CheckboxViewHelper extends AbstractFormFieldViewHelper
         $this->registerArgument('value', 'string', 'Value of input tag. Required for checkboxes', true);
         $this->registerArgument('checked', 'bool', 'Specifies that the input element should be preselected');
         $this->registerArgument('multiple', 'bool', 'Specifies whether this checkbox belongs to a multivalue (is part of a checkbox group)', false, false);
+        $this->registerArgument('required', 'bool', 'If the field is required or not', false, false);
     }
 
     public function render(): string
@@ -115,6 +116,7 @@ final class CheckboxViewHelper extends AbstractFormFieldViewHelper
 
         $checked = $this->arguments['checked'];
         $multiple = $this->arguments['multiple'];
+        $required = $this->arguments['required'];
 
         $nameAttribute = $this->getName();
 
@@ -148,6 +150,10 @@ final class CheckboxViewHelper extends AbstractFormFieldViewHelper
         $this->data['value'] = $valueAttribute;
         if ($checked === true) {
             $this->data['checked'] = 'checked';
+        }
+
+        if ($required !== false) {
+            $this->data['required'] = $required;
         }
 
         $this->setErrorClassAttribute();
